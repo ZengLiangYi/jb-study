@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能教育平台 - 原型设计</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            overflow-x: auto;
+        }
+        .prototype-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-bottom: 40px;
+        }
+        .device-frame {
+            width: 1024px;
+            height: 1366px;
+            background: #000;
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .device-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .screen-label {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-4xl font-bold text-white text-center mb-12">小学智能学习平台</h1>
+    
+    <div class="prototype-container">
+        <!-- 登录页 -->
+        <div class="device-frame">
+            <div class="screen-label">登录页</div>
+            <div class="device-screen">
+                <iframe src="login.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 首页 -->
+        <div class="device-frame">
+            <div class="screen-label">首页</div>
+            <div class="device-screen">
+                <iframe src="home.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 刷题中心 -->
+        <div class="device-frame">
+            <div class="screen-label">刷题中心</div>
+            <div class="device-screen">
+                <iframe src="practice.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 章节选择 -->
+        <div class="device-frame">
+            <div class="screen-label">章节选择</div>
+            <div class="device-screen">
+                <iframe src="chapter-selection.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 答题界面 -->
+        <div class="device-frame">
+            <div class="screen-label">答题界面</div>
+            <div class="device-screen">
+                <iframe src="question.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- AI助手 -->
+        <div class="device-frame">
+            <div class="screen-label">AI助手</div>
+            <div class="device-screen">
+                <iframe src="ai-assistant.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 学情分析 -->
+        <div class="device-frame">
+            <div class="screen-label">学情分析</div>
+            <div class="device-screen">
+                <iframe src="analytics.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 个人中心 -->
+        <div class="device-frame">
+            <div class="screen-label">个人中心</div>
+            <div class="device-screen">
+                <iframe src="profile.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

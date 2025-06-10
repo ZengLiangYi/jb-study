@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习中心 - 小学智能学习平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航 -->
+    <div class="bg-white px-8 py-4 flex items-center justify-between border-b">
+        <h1 class="text-2xl font-bold text-gray-800">练习中心</h1>
+        <div class="flex items-center space-x-4">
+            <i class="fas fa-search text-xl text-gray-600"></i>
+            <i class="fas fa-filter text-xl text-gray-600"></i>
+        </div>
+    </div>
+
+    <div class="p-8 pb-24">
+        <!-- 学习状态卡片 -->
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold">小明的学习状态</h3>
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-star text-yellow-300"></i>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-check-circle text-green-300"></i>
+                    </div>
+                    <p class="text-xs opacity-80">今日完成</p>
+                    <p class="text-lg font-bold">8题</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-fire text-orange-300"></i>
+                    </div>
+                    <p class="text-xs opacity-80">连续天数</p>
+                    <p class="text-lg font-bold">5天</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-medal text-yellow-300"></i>
+                    </div>
+                    <p class="text-xs opacity-80">本周排名</p>
+                    <p class="text-lg font-bold">第3名</p>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 rounded-xl p-3">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm">今日目标进度</span>
+                    <span class="text-sm font-semibold">8/10 题</span>
+                </div>
+                <div class="w-full bg-white/20 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-yellow-300 to-green-300 rounded-full h-2" style="width: 80%"></div>
+                </div>
+                <p class="text-xs opacity-80 mt-2">再做2题就完成今日目标啦！</p>
+            </div>
+        </div>
+
+        <!-- 学科选择 -->
+        <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">选择学科</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <!-- 数学 -->
+                <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-6 text-white cursor-pointer transform hover:scale-105 transition duration-300 shadow-lg" onclick="window.location.href='chapter-selection.html'">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs bg-white/20 rounded-full px-2 py-1">热门</div>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">数学</h4>
+                    <p class="text-sm opacity-90 mb-2">分数运算、几何图形</p>
+                    <div class="flex items-center text-xs">
+                        <span class="bg-white/20 rounded-full px-2 py-1 mr-2">124道题</span>
+                        <span>已学5个单元</span>
+                    </div>
+                </div>
+
+                <!-- 语文 -->
+                <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-3xl p-6 text-white cursor-pointer transform hover:scale-105 transition duration-300 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2z"/>
+                            </svg>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs bg-yellow-400 text-gray-800 rounded-full px-2 py-1">新课</div>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">语文</h4>
+                    <p class="text-sm opacity-90 mb-2">古诗词、阅读理解</p>
+                    <div class="flex items-center text-xs">
+                        <span class="bg-white/20 rounded-full px-2 py-1 mr-2">86道题</span>
+                        <span>已学3个单元</span>
+                    </div>
+                </div>
+
+                <!-- 英语 -->
+                <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-3xl p-6 text-white cursor-pointer transform hover:scale-105 transition duration-300 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.01-4.65.51-6.81l-.46-.74H17c.46 0 .91.05 1.34.13C17.5 5.95 16.84 6 16 6c-1.37 0-2.74-.56-3.59-1.44L12 4.22 11.59 4.56C10.74 5.44 9.37 6 8 6s-2.74-.56-3.59-1.44L4 4.22l-.41.34C2.74 5.44 1.37 6 0 6v2c1.37 0 2.74.56 3.59 1.44L4 9.78l.41-.34C5.26 8.56 6.63 8 8 8s2.74.56 3.59 1.44l.41.34.41-.34C13.26 8.56 14.63 8 16 8c.46 0 .91.05 1.34.13-.84.94-1.5 2.01-1.84 3.24z"/>
+                            </svg>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs bg-white/20 rounded-full px-2 py-1">提升</div>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">英语</h4>
+                    <p class="text-sm opacity-90 mb-2">单词拼写、语法练习</p>
+                    <div class="flex items-center text-xs">
+                        <span class="bg-white/20 rounded-full px-2 py-1 mr-2">62道题</span>
+                        <span>已学4个单元</span>
+                    </div>
+                </div>
+
+                <!-- 科学 -->
+                <div class="bg-gradient-to-br from-orange-400 to-orange-600 rounded-3xl p-6 text-white cursor-pointer transform hover:scale-105 transition duration-300 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2.5-5H19V4h-3V2.5C16 1.12 14.88 0 13.5 0h-3C9.12 0 8 1.12 8 2.5V4H5v2h1.5v12.5C6.5 19.88 7.62 21 9 21h6c1.38 0 2.5-1.12 2.5-2.5V6h1.5V4zM10 2.5c0-.28.22-.5.5-.5h3c.28 0 .5.22.5.5V4h-4V2.5z"/>
+                            </svg>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs bg-white/20 rounded-full px-2 py-1">探索</div>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">科学</h4>
+                    <p class="text-sm opacity-90 mb-2">植物动物、自然现象</p>
+                    <div class="flex items-center text-xs">
+                        <span class="bg-white/20 rounded-full px-2 py-1 mr-2">45道题</span>
+                        <span>已学2个单元</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 练习模式 -->
+        <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">练习模式</h3>
+            <div class="space-y-4">
+                <!-- 智能练习 -->
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-5 text-white cursor-pointer shadow-lg hover:shadow-xl transition">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-brain text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-lg font-bold mb-1">智能练习</h4>
+                            <p class="text-sm opacity-90">AI根据你的水平推荐最适合的题目</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs bg-white/20 rounded-full px-3 py-1 mb-1">推荐</div>
+                            <div class="text-xs">15分钟</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 其他练习模式 -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-white rounded-2xl p-4 border-2 border-gray-100 cursor-pointer hover:border-green-300 hover:bg-green-50 transition">
+                        <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-list-ol text-green-600"></i>
+                        </div>
+                        <h5 class="font-semibold text-center text-gray-800 mb-1">单元练习</h5>
+                        <p class="text-xs text-gray-600 text-center">按单元学习</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-4 border-2 border-gray-100 cursor-pointer hover:border-red-300 hover:bg-red-50 transition">
+                        <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-exclamation-circle text-red-600"></i>
+                        </div>
+                        <h5 class="font-semibold text-center text-gray-800 mb-1">错题重做</h5>
+                        <p class="text-xs text-gray-600 text-center">巩固薄弱点</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-4 border-2 border-gray-100 cursor-pointer hover:border-yellow-300 hover:bg-yellow-50 transition">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-trophy text-yellow-600"></i>
+                        </div>
+                        <h5 class="font-semibold text-center text-gray-800 mb-1">挑战赛</h5>
+                        <p class="text-xs text-gray-600 text-center">答题竞赛</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 章节列表 -->
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">六年级数学</h3>
+            <div class="space-y-3">
+                <div class="bg-white rounded-2xl p-5 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                            <span class="text-blue-600 font-semibold">1</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">分数乘法</h4>
+                            <p class="text-sm text-gray-500">5个知识点 · 45道题</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="text-right">
+                            <p class="text-sm text-gray-500">完成度</p>
+                            <p class="text-lg font-semibold text-green-500">85%</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                            <span class="text-blue-600 font-semibold">2</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">位置与方向</h4>
+                            <p class="text-sm text-gray-500">4个知识点 · 32道题</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="text-right">
+                            <p class="text-sm text-gray-500">完成度</p>
+                            <p class="text-lg font-semibold text-orange-500">62%</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                            <span class="text-blue-600 font-semibold">3</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">分数除法</h4>
+                            <p class="text-sm text-gray-500">6个知识点 · 38道题</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="text-right">
+                            <p class="text-sm text-gray-500">完成度</p>
+                            <p class="text-lg font-semibold text-gray-400">0%</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t px-8 py-4">
+        <div class="flex justify-around">
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-home text-2xl"></i>
+                <span class="text-xs">首页</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-blue-500">
+                <i class="fas fa-book text-2xl"></i>
+                <span class="text-xs">练习</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500 cursor-pointer" onclick="window.location.href='ai-assistant.html'">
+                <i class="fas fa-robot text-2xl"></i>
+                <span class="text-xs">AI助手</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-chart-bar text-2xl"></i>
+                <span class="text-xs">学情</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-user text-2xl"></i>
+                <span class="text-xs">我的</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

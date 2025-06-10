@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学章节选择 - 小学智能学习平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .tree-item { cursor: pointer; transition: all 0.2s ease; }
+        .tree-item:hover { background-color: #f8fafc; }
+        .tree-item.active { background-color: #dbeafe; border-left: 3px solid #3b82f6; }
+        .chapter-content { min-height: 500px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航 -->
+    <div class="bg-white px-6 py-4 flex items-center border-b shadow-sm">
+        <button onclick="history.back()" class="mr-4 p-2 hover:bg-gray-100 rounded-lg transition">
+            <i class="fas fa-arrow-left text-gray-600"></i>
+        </button>
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold text-gray-800">数学</h1>
+                <p class="text-sm text-gray-500">北师大版六年级上册(0/7)</p>
+            </div>
+        </div>
+        <div class="ml-auto">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition">
+                切换
+            </button>
+        </div>
+    </div>
+
+    <div class="flex h-screen">
+        <!-- 左侧目录树 -->
+        <div class="w-80 bg-white border-r overflow-y-auto">
+            <div class="p-4">
+                <div class="mb-4">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <i class="fas fa-book text-blue-500"></i>
+                        <span class="font-semibold text-gray-800">教材目录</span>
+                    </div>
+                </div>
+
+                <!-- 第一单元 -->
+                <div class="mb-3">
+                    <div class="tree-item p-3 rounded-lg border border-gray-200 active" onclick="selectChapter('chapter1')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-blue-600 font-semibold text-sm">1</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">分数乘法</h3>
+                                    <p class="text-xs text-gray-500">6个小节</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">85%</span>
+                                <i class="fas fa-chevron-down text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- 子节点 -->
+                        <div class="mt-3 ml-8 space-y-2">
+                            <div class="flex items-center space-x-2 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                <i class="fas fa-circle text-blue-300 text-xs"></i>
+                                <span class="text-sm text-gray-700">分数乘整数</span>
+                                <span class="ml-auto text-xs text-green-500"><i class="fas fa-check"></i></span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                <i class="fas fa-circle text-blue-300 text-xs"></i>
+                                <span class="text-sm text-gray-700">一个数乘分数</span>
+                                <span class="ml-auto text-xs text-green-500"><i class="fas fa-check"></i></span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                <i class="fas fa-circle text-blue-300 text-xs"></i>
+                                <span class="text-sm text-gray-700">分数乘分数</span>
+                                <span class="ml-auto text-xs text-orange-500"><i class="fas fa-clock"></i></span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                <i class="fas fa-circle text-gray-300 text-xs"></i>
+                                <span class="text-sm text-gray-500">解决问题</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二单元 -->
+                <div class="mb-3">
+                    <div class="tree-item p-3 rounded-lg border border-gray-200" onclick="selectChapter('chapter2')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-purple-600 font-semibold text-sm">2</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">长方体的表面积</h3>
+                                    <p class="text-xs text-gray-500">3个小节</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">45%</span>
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三单元 -->
+                <div class="mb-3">
+                    <div class="tree-item p-3 rounded-lg border border-gray-200" onclick="selectChapter('chapter3')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-green-600 font-semibold text-sm">3</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">分数除法</h3>
+                                    <p class="text-xs text-gray-500">5个小节</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">0%</span>
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第四单元 -->
+                <div class="mb-3">
+                    <div class="tree-item p-3 rounded-lg border border-gray-200" onclick="selectChapter('chapter4')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-red-600 font-semibold text-sm">4</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">比</h3>
+                                    <p class="text-xs text-gray-500">4个小节</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">0%</span>
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第五单元 -->
+                <div class="mb-3">
+                    <div class="tree-item p-3 rounded-lg border border-gray-200" onclick="selectChapter('chapter5')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-yellow-600 font-semibold text-sm">5</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">统计</h3>
+                                    <p class="text-xs text-gray-500">2个小节</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">0%</span>
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第六单元 -->
+                <div class="mb-3">
+                    <div class="tree-item p-3 rounded-lg border border-gray-200" onclick="selectChapter('chapter6')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-indigo-600 font-semibold text-sm">6</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">百分数</h3>
+                                    <p class="text-xs text-gray-500">6个小节</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">0%</span>
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第七单元 -->
+                <div class="mb-3">
+                    <div class="tree-item p-3 rounded-lg border border-gray-200" onclick="selectChapter('chapter7')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-pink-600 font-semibold text-sm">7</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">扇形统计图</h3>
+                                    <p class="text-xs text-gray-500">3个小节</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">0%</span>
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧内容区域 -->
+        <div class="flex-1 bg-gray-50 overflow-y-auto">
+            <div class="p-6">
+                <!-- 章节简介内容 -->
+                <div id="chapter-content" class="chapter-content">
+                    <!-- 默认显示第一单元内容 -->
+                    <div id="chapter1-content">
+                        <div class="bg-white rounded-2xl p-6 shadow-sm mb-6">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold text-gray-800">第一单元：分数乘法</h2>
+                                    <p class="text-gray-500 mt-1">学习分数与整数、分数与分数的乘法运算</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-6 mb-6">
+                                <div class="bg-blue-50 rounded-xl p-4">
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <i class="fas fa-book text-blue-600"></i>
+                                        <span class="font-semibold text-blue-800">学习目标</span>
+                                    </div>
+                                    <ul class="text-sm text-blue-700 space-y-1">
+                                        <li>• 理解分数乘法的意义</li>
+                                        <li>• 掌握分数乘法的计算方法</li>
+                                        <li>• 能解决相关实际问题</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-green-50 rounded-xl p-4">
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <i class="fas fa-chart-line text-green-600"></i>
+                                        <span class="font-semibold text-green-800">学习进度</span>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span class="text-green-700">已完成</span>
+                                            <span class="font-semibold text-green-800">85%</span>
+                                        </div>
+                                        <div class="w-full bg-green-200 rounded-full h-2">
+                                            <div class="bg-green-500 rounded-full h-2" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-t pt-6">
+                                <h3 class="font-semibold text-gray-800 mb-4">章节内容</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="border border-gray-200 rounded-xl p-4 hover:border-blue-300 transition cursor-pointer">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600 text-sm"></i>
+                                            </div>
+                                            <span class="font-medium text-gray-800">分数乘整数</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-2">学习分数与整数相乘的方法</p>
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span class="text-green-600">已完成</span>
+                                            <span class="text-gray-500">12道题</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-gray-200 rounded-xl p-4 hover:border-blue-300 transition cursor-pointer">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600 text-sm"></i>
+                                            </div>
+                                            <span class="font-medium text-gray-800">一个数乘分数</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-2">掌握整数乘以分数的计算</p>
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span class="text-green-600">已完成</span>
+                                            <span class="text-gray-500">15道题</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-orange-200 rounded-xl p-4 hover:border-blue-300 transition cursor-pointer bg-orange-50">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-clock text-orange-600 text-sm"></i>
+                                            </div>
+                                            <span class="font-medium text-gray-800">分数乘分数</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-2">学习分数与分数相乘的方法</p>
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span class="text-orange-600">学习中</span>
+                                            <span class="text-gray-500">18道题</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-gray-200 rounded-xl p-4 hover:border-blue-300 transition cursor-pointer">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                                                <span class="text-gray-600 text-sm font-semibold">4</span>
+                                            </div>
+                                            <span class="font-medium text-gray-500">解决问题</span>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mb-2">运用分数乘法解决实际问题</p>
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span class="text-gray-500">未开始</span>
+                                            <span class="text-gray-500">10道题</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex space-x-4 mt-6">
+                                <button class="flex-1 bg-blue-500 text-white py-3 rounded-xl font-medium hover:bg-blue-600 transition">
+                                    <i class="fas fa-play mr-2"></i>
+                                    继续学习
+                                </button>
+                                <!-- <button class="px-6 bg-gray-100 text-gray-700 py-3 rounded-xl font-medium hover:bg-gray-200 transition">
+                                    <i class="fas fa-download mr-2"></i>
+                                    下载
+                                </button> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 其他章节内容（隐藏状态） -->
+                    <div id="chapter2-content" style="display: none;">
+                        <div class="bg-white rounded-2xl p-6 shadow-sm">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center">
+                                    <i class="fas fa-cube text-purple-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold text-gray-800">第二单元：长方体的表面积</h2>
+                                    <p class="text-gray-500 mt-1">学习立体图形的表面积计算方法</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">本单元主要学习长方体和正方体的表面积计算，包括展开图的理解和实际应用。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectChapter(chapterId) {
+            // 移除所有活动状态
+            document.querySelectorAll('.tree-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // 添加活动状态到选中项
+            event.currentTarget.classList.add('active');
+            
+            // 隐藏所有章节内容
+            document.querySelectorAll('[id$="-content"]').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // 显示选中章节内容
+            const contentId = chapterId + '-content';
+            const contentElement = document.getElementById(contentId);
+            if (contentElement) {
+                contentElement.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html> 

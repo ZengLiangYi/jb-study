@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 小学智能学习平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .badge-shine {
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 200%;
+            animation: shine 2s linear infinite;
+        }
+        
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 个人信息头部 -->
+    <div class="gradient-bg px-6 pt-12 pb-6 relative overflow-hidden">
+        <!-- 装饰性元素 -->
+        <div class="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full floating"></div>
+        <div class="absolute bottom-0 left-10 w-20 h-20 bg-white/5 rounded-full floating" style="animation-delay: 2s;"></div>
+        
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-bold text-white">个人中心</h1>
+            <button class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                <i class="fas fa-cog text-xl text-white"></i>
+            </button>
+        </div>
+        
+        <!-- 用户信息卡片 -->
+        <div class="glass-card rounded-3xl p-6 mb-6">
+            <div class="flex items-center space-x-4 mb-4">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=200&h=200&fit=crop" 
+                         class="w-20 h-20 rounded-2xl object-cover border-3 border-white shadow-lg">
+                    <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                        <i class="fas fa-star text-white text-xs"></i>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <h2 class="text-xl font-bold text-white mb-1">小明同学</h2>
+                    <p class="text-white/80 text-sm mb-2">金碧实验学校 · 六年级(3)班</p>
+                    <div class="flex items-center space-x-3 text-xs">
+                        <span class="bg-white/20 px-2 py-1 rounded-full text-white">学号: 2024063015</span>
+                        <span class="bg-white/20 px-2 py-1 rounded-full text-white">小组长</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-3">
+                <div class="bg-white/10 rounded-xl p-3 text-center">
+                    <div class="w-8 h-8 badge-shine rounded-full flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-crown text-yellow-800 text-sm"></i>
+                    </div>
+                    <p class="text-white text-xs font-medium">学习之星</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-3 text-center">
+                    <div class="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-fire text-white text-sm"></i>
+                    </div>
+                    <p class="text-white text-xs font-medium">连续7天</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-3 text-center">
+                    <div class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center mx-auto mb-1">
+                        <i class="fas fa-heart text-white text-sm"></i>
+                    </div>
+                    <p class="text-white text-xs font-medium">积极学者</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学习统计面板 -->
+    <div class="px-6 -mt-2 mb-6">
+        <div class="bg-white rounded-3xl card-shadow p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-gray-800">本周学习概况</h3>
+                <span class="text-sm text-gray-500">2024年第12周</span>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-4 stats-card">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-check-circle text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-blue-600">28</span>
+                    </div>
+                    <p class="text-sm text-gray-600">完成题目</p>
+                    <p class="text-xs text-green-600 mt-1">+12 比上周</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-4 stats-card">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-clock text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-green-600">5.2h</span>
+                    </div>
+                    <p class="text-sm text-gray-600">学习时长</p>
+                    <p class="text-xs text-green-600 mt-1">达标 💪</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-4 gap-1 bg-gray-100 rounded-2xl p-4">
+                <div class="text-center">
+                    <div class="relative w-12 h-12 mx-auto mb-2">
+                        <svg class="w-12 h-12 progress-ring">
+                            <circle cx="24" cy="24" r="20" stroke="#e5e7eb" stroke-width="4" fill="none"/>
+                            <circle cx="24" cy="24" r="20" stroke="#3b82f6" stroke-width="4" fill="none" 
+                                    stroke-dasharray="125.6" stroke-dashoffset="31.4"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xs font-bold text-blue-600">92%</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600">数学</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="relative w-12 h-12 mx-auto mb-2">
+                        <svg class="w-12 h-12 progress-ring">
+                            <circle cx="24" cy="24" r="20" stroke="#e5e7eb" stroke-width="4" fill="none"/>
+                            <circle cx="24" cy="24" r="20" stroke="#10b981" stroke-width="4" fill="none" 
+                                    stroke-dasharray="125.6" stroke-dashoffset="18.8"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xs font-bold text-green-600">85%</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600">语文</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="relative w-12 h-12 mx-auto mb-2">
+                        <svg class="w-12 h-12 progress-ring">
+                            <circle cx="24" cy="24" r="20" stroke="#e5e7eb" stroke-width="4" fill="none"/>
+                            <circle cx="24" cy="24" r="20" stroke="#8b5cf6" stroke-width="4" fill="none" 
+                                    stroke-dasharray="125.6" stroke-dashoffset="25.1"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xs font-bold text-purple-600">80%</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600">英语</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="relative w-12 h-12 mx-auto mb-2">
+                        <svg class="w-12 h-12 progress-ring">
+                            <circle cx="24" cy="24" r="20" stroke="#e5e7eb" stroke-width="4" fill="none"/>
+                            <circle cx="24" cy="24" r="20" stroke="#f59e0b" stroke-width="4" fill="none" 
+                                    stroke-dasharray="125.6" stroke-dashoffset="37.7"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xs font-bold text-yellow-600">70%</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600">科学</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 座右铭卡片 -->
+    <div class="px-6 mb-6">
+        <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-2xl p-4 text-white text-center">
+            <i class="fas fa-quote-left text-white/60 text-lg mb-2"></i>
+            <p class="font-medium mb-2">好好学习，天天向上！</p>
+            <p class="text-sm text-white/80">— 今日金句</p>
+        </div>
+    </div>
+
+    <!-- 功能列表 -->
+    <div class="px-6 pb-24">
+        <!-- 学习相关 -->
+        <div class="mb-6">
+            <h3 class="text-gray-500 text-sm mb-3 flex items-center">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                学习管理
+            </h3>
+            <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                <div class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-bookmark text-white"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-800 font-medium">我的收藏</span>
+                            <p class="text-xs text-gray-500">收藏的题目和知识点</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full">15</span>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-exclamation-circle text-white"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-800 font-medium">错题本</span>
+                            <p class="text-xs text-gray-500">需要复习的错题</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">8</span>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-800 font-medium">学习报告</span>
+                            <p class="text-xs text-gray-500">详细的学习分析</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 班级互动 -->
+        <!-- <div class="mb-6">
+            <h3 class="text-gray-500 text-sm mb-3 flex items-center">
+                <i class="fas fa-users mr-2"></i>
+                班级互动
+            </h3>
+            <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                <div class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-medal text-white"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-800 font-medium">学习成就</span>
+                            <p class="text-xs text-gray-500">查看学习徽章和奖励</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">3个徽章</span>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-user-friends text-white"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-800 font-medium">同学圈</span>
+                            <p class="text-xs text-gray-500">和同学一起学习交流</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- 设置 -->
+        <div class="mb-6">
+            <h3 class="text-gray-500 text-sm mb-3 flex items-center">
+                <i class="fas fa-cog mr-2"></i>
+                设置
+            </h3>
+            <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                <div class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-user-edit text-white"></i>
+                        </div>
+                        <span class="text-gray-800 font-medium">个人资料</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 border-b border-gray-50">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-palette text-white"></i>
+                        </div>
+                        <span class="text-gray-800 font-medium">主题设置</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" checked class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-purple-400 peer-checked:to-pink-400"></div>
+                    </label>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-bell text-white"></i>
+                        </div>
+                        <span class="text-gray-800 font-medium">消息通知</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" checked class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-blue-400 peer-checked:to-blue-600"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 其他 -->
+        <div>
+            <h3 class="text-gray-500 text-sm mb-3 flex items-center">
+                <i class="fas fa-ellipsis-h mr-2"></i>
+                更多
+            </h3>
+            <div class="bg-white rounded-2xl card-shadow overflow-hidden">
+                <div class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-headset text-white"></i>
+                        </div>
+                        <span class="text-gray-800 font-medium">联系老师</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-info-circle text-white"></i>
+                        </div>
+                        <span class="text-gray-800 font-medium">关于我们</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 hover:bg-red-50 transition cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-sign-out-alt text-white"></i>
+                        </div>
+                        <span class="text-gray-800 font-medium">退出登录</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t px-8 py-4">
+        <div class="flex justify-around">
+            <div class="flex flex-col items-center space-y-1 text-gray-500 cursor-pointer" onclick="window.location.href='practice.html'">
+                <i class="fas fa-home text-2xl"></i>
+                <span class="text-xs">首页</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500 cursor-pointer" onclick="window.location.href='practice.html'">
+                <i class="fas fa-book text-2xl"></i>
+                <span class="text-xs">练习</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500 cursor-pointer" onclick="window.location.href='ai-assistant.html'">
+                <i class="fas fa-robot text-2xl"></i>
+                <span class="text-xs">AI助手</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-chart-bar text-2xl"></i>
+                <span class="text-xs">学习报告</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-blue-500">
+                <i class="fas fa-user text-2xl"></i>
+                <span class="text-xs">我的</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

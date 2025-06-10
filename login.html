@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 智能教育平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-2xl mx-auto p-12">
+        <!-- Logo和标题 -->
+        <div class="text-center mb-12">
+            <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl">
+                <i class="fas fa-graduation-cap text-white text-5xl"></i>
+            </div>
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">金碧智能学习平台</h1>
+            <p class="text-gray-600 text-lg">学生的专属学习乐园</p>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="bg-white rounded-3xl shadow-xl p-10">
+            <form class="space-y-6">
+                <!-- 手机号输入 -->
+                <div>
+                    <label class="block text-gray-700 text-sm font-medium mb-2">手机号</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-mobile-alt text-gray-400"></i>
+                        </div>
+                        <input type="tel" placeholder="请输入手机号" 
+                               class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition text-lg">
+                    </div>
+                </div>
+
+                <!-- 密码输入 -->
+                <div>
+                    <label class="block text-gray-700 text-sm font-medium mb-2">密码</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" placeholder="请输入密码" 
+                               class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition text-lg">
+                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                            <i class="fas fa-eye text-gray-400 cursor-pointer hover:text-gray-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 记住我和忘记密码 -->
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center cursor-pointer">
+                        <input type="checkbox" class="w-5 h-5 text-blue-600 rounded-lg focus:ring-blue-500">
+                        <span class="ml-2 text-gray-700">记住我</span>
+                    </label>
+                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">忘记密码？</a>
+                </div>
+
+                <!-- 登录按钮 -->
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 rounded-2xl font-semibold text-lg hover:shadow-lg transform hover:scale-[1.02] transition duration-200">
+                    登录
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

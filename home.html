@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 - 小学智能学习平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航栏 -->
+    <div class="bg-white px-8 py-4 flex items-center justify-between border-b">
+        <div class="flex items-center space-x-4">
+            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop" 
+                 class="w-12 h-12 rounded-full object-cover">
+            <div>
+                <p class="text-sm text-gray-600">早上好！</p>
+                <p class="font-semibold text-lg">小明同学</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <i class="fas fa-bell text-2xl text-gray-600"></i>
+                <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+            </div>
+            <i class="fas fa-cog text-2xl text-gray-600"></i>
+        </div>
+    </div>
+
+    <div class="p-8 pb-24">
+        <!-- 学习进度卡片 -->
+        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl p-8 mb-8 text-white">
+            <h2 class="text-2xl font-bold mb-6">今日学习概览</h2>
+            <div class="grid grid-cols-3 gap-6">
+                <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center">
+                    <i class="fas fa-book text-3xl mb-2"></i>
+                    <p class="text-3xl font-bold">8</p>
+                    <p class="text-sm opacity-90">已完成题目</p>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center">
+                    <i class="fas fa-clock text-3xl mb-2"></i>
+                    <p class="text-3xl font-bold">25</p>
+                    <p class="text-sm opacity-90">学习分钟</p>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center">
+                    <i class="fas fa-fire text-3xl mb-2"></i>
+                    <p class="text-3xl font-bold">5</p>
+                    <p class="text-sm opacity-90">连续打卡</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快捷功能入口 -->
+        <h3 class="text-xl font-bold text-gray-800 mb-4">快速开始</h3>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                    <i class="fas fa-brain text-blue-500 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-2">智能练习</h4>
+                <p class="text-gray-600 text-sm">根据你的水平推荐练习题</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
+                    <i class="fas fa-comments text-green-500 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-2">AI小助手</h4>
+                <p class="text-gray-600 text-sm">有问题随时问我哦</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
+                    <i class="fas fa-chart-line text-purple-500 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-2">学习报告</h4>
+                <p class="text-gray-600 text-sm">看看你的学习进步</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4">
+                    <i class="fas fa-bookmark text-orange-500 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-2">错题本</h4>
+                <p class="text-gray-600 text-sm">复习巩固薄弱知识点</p>
+            </div>
+        </div>
+
+        <!-- 推荐课程 -->
+        <h3 class="text-xl font-bold text-gray-800 mb-4">推荐学习</h3>
+        <div class="space-y-4">
+            <div class="bg-white rounded-2xl p-6 flex items-center space-x-4 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&h=150&fit=crop" 
+                     class="w-24 h-24 rounded-xl object-cover">
+                <div class="flex-1">
+                    <h4 class="font-semibold text-lg mb-1">六年级数学 - 分数运算</h4>
+                    <p class="text-gray-600 text-sm mb-2">掌握分数的加减乘除</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-book-open mr-1"></i>
+                            <span>12课时</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-users mr-1"></i>
+                            <span>586位同学学习</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500 mb-1">进度</p>
+                    <p class="text-2xl font-bold text-blue-500">45%</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 flex items-center space-x-4 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=200&h=150&fit=crop" 
+                     class="w-24 h-24 rounded-xl object-cover">
+                <div class="flex-1">
+                    <h4 class="font-semibold text-lg mb-1">六年级语文 - 古诗词</h4>
+                    <p class="text-gray-600 text-sm mb-2">学习经典古诗词</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-book-open mr-1"></i>
+                            <span>8课时</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-users mr-1"></i>
+                            <span>423位同学学习</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500 mb-1">进度</p>
+                    <p class="text-2xl font-bold text-green-500">72%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t px-8 py-4">
+        <div class="flex justify-around">
+            <div class="flex flex-col items-center space-y-1 text-blue-500">
+                <i class="fas fa-home text-2xl"></i>
+                <span class="text-xs">首页</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-book text-2xl"></i>
+                <span class="text-xs">练习</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-robot text-2xl"></i>
+                <span class="text-xs">AI小助手</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-chart-bar text-2xl"></i>
+                <span class="text-xs">学习报告</span>
+            </div>
+            <div class="flex flex-col items-center space-y-1 text-gray-500">
+                <i class="fas fa-user text-2xl"></i>
+                <span class="text-xs">我的</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

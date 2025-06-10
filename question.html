@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>答题 - 小学智能学习平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        .assistant-float {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 50;
+        }
+        
+        .assistant-panel {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .assistant-panel.active {
+            transform: translateX(0);
+        }
+        
+        .bounce-animation {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        .chat-message {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        
+        .chat-message.show {
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航 -->
+    <div class="bg-white px-8 py-4 flex items-center justify-between border-b">
+        <i class="fas fa-times text-2xl text-gray-600 cursor-pointer" onclick="history.back()"></i>
+        <div class="flex items-center space-x-2">
+            <span class="text-sm text-gray-500">第</span>
+            <span class="text-xl font-bold text-blue-500">3</span>
+            <span class="text-sm text-gray-500">/ 10 题</span>
+        </div>
+        <i class="fas fa-list text-2xl text-gray-600 cursor-pointer"></i>
+    </div>
+
+    <!-- 进度条 -->
+    <div class="bg-white px-8 py-3">
+        <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-blue-500 h-2 rounded-full" style="width: 30%"></div>
+        </div>
+    </div>
+
+    <div class="p-8 pb-32">
+        <!-- 题目内容 -->
+        <div class="bg-white rounded-3xl p-8 mb-6 shadow-sm" id="question-content">
+            <div class="flex items-center space-x-2 mb-4">
+                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg text-sm font-medium">单选题</span>
+                <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-lg text-sm">中等</span>
+            </div>
+            <p class="text-lg text-gray-800 leading-relaxed mb-6" id="question-text">
+                小明的妈妈买了2千克苹果，每千克8元。又买了3千克橘子，每千克6元。一共花了多少钱？
+            </p>
+            
+            <!-- 选项 -->
+            <div class="space-y-4" id="question-options">
+                <div class="option border-2 border-gray-200 rounded-2xl p-5 flex items-center space-x-4 cursor-pointer hover:border-blue-400 transition" onclick="selectOption(this, 'A')">
+                    <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                        <span class="text-gray-600 font-medium">A</span>
+                    </div>
+                    <p class="text-gray-700">32元</p>
+                </div>
+                
+                <div class="option border-2 border-gray-200 rounded-2xl p-5 flex items-center space-x-4 cursor-pointer hover:border-blue-400 transition" onclick="selectOption(this, 'B')">
+                    <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                        <span class="text-gray-600 font-medium">B</span>
+                    </div>
+                    <p class="text-gray-700">30元</p>
+                </div>
+                
+                <div class="option border-2 border-blue-500 bg-blue-50 rounded-2xl p-5 flex items-center space-x-4 cursor-pointer" onclick="selectOption(this, 'C')">
+                    <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-check text-white text-sm"></i>
+                    </div>
+                    <p class="text-gray-800 font-medium">34元 (2×8 + 3×6 = 16 + 18 = 34)</p>
+                </div>
+                
+                <div class="option border-2 border-gray-200 rounded-2xl p-5 flex items-center space-x-4 cursor-pointer hover:border-blue-400 transition" onclick="selectOption(this, 'D')">
+                    <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                        <span class="text-gray-600 font-medium">D</span>
+                    </div>
+                    <p class="text-gray-700">36元</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 工具栏 -->
+        <div class="bg-white rounded-2xl p-4 flex justify-around shadow-sm mb-6">
+            <button class="flex flex-col items-center space-y-1 p-3">
+                <i class="fas fa-pencil-alt text-xl text-gray-600"></i>
+                <span class="text-xs text-gray-600">草稿纸</span>
+            </button>
+            <button class="flex flex-col items-center space-y-1 p-3">
+                <i class="fas fa-bookmark text-xl text-gray-600"></i>
+                <span class="text-xs text-gray-600">收藏</span>
+            </button>
+            <button class="flex flex-col items-center space-y-1 p-3">
+                <i class="fas fa-lightbulb text-xl text-gray-600"></i>
+                <span class="text-xs text-gray-600">提示</span>
+            </button>
+        </div>
+
+        <!-- 底部按钮 -->
+        <div class="flex space-x-4">
+            <button class="flex-1 bg-gray-200 text-gray-700 py-4 rounded-2xl font-medium text-lg">
+                上一题
+            </button>
+            <button class="flex-1 bg-blue-500 text-white py-4 rounded-2xl font-medium text-lg">
+                下一题
+            </button>
+        </div>
+    </div>
+
+    <!-- 浮动AI助手按钮 -->
+    <div class="assistant-float">
+        <div class="relative">
+            <!-- 脉冲圆环 -->
+            <div class="absolute inset-0 w-16 h-16 bg-purple-400 rounded-full pulse-ring"></div>
+            <!-- 主按钮 -->
+            <button id="assistant-btn" onclick="toggleAssistant()" class="relative w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-2xl flex items-center justify-center bounce-animation hover:scale-110 transition-transform">
+                <i class="fas fa-robot text-white text-2xl"></i>
+            </button>
+            <!-- 问号提示 -->
+            <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center" id="help-indicator">
+                <span class="text-white text-xs font-bold">?</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI助手面板 -->
+    <div id="assistant-panel" class="fixed top-0 right-0 w-full max-w-md h-full bg-white shadow-2xl assistant-panel z-40">
+        <!-- 助手头部 -->
+        <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-white">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-robot text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">智智助手</h3>
+                        <p class="text-sm opacity-90">我来帮你解题！</p>
+                    </div>
+                </div>
+                <button onclick="toggleAssistant()" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 聊天区域 -->
+        <div class="flex-1 p-4 h-full overflow-y-auto" style="max-height: calc(100vh - 200px);">
+            <!-- 快速帮助按钮 -->
+            <div class="mb-4">
+                <p class="text-sm text-gray-500 mb-3">我能为你做什么？</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="askForHelp('解题思路')" class="bg-blue-50 text-blue-600 p-3 rounded-xl text-sm font-medium hover:bg-blue-100 transition">
+                        💡 解题思路
+                    </button>
+                    <button onclick="askForHelp('题目理解')" class="bg-green-50 text-green-600 p-3 rounded-xl text-sm font-medium hover:bg-green-100 transition">
+                        📖 题目理解
+                    </button>
+                    <button onclick="askForHelp('计算方法')" class="bg-orange-50 text-orange-600 p-3 rounded-xl text-sm font-medium hover:bg-orange-100 transition">
+                        🧮 计算方法
+                    </button>
+                    <button onclick="askForHelp('知识点')" class="bg-purple-50 text-purple-600 p-3 rounded-xl text-sm font-medium hover:bg-purple-100 transition">
+                        📚 相关知识点
+                    </button>
+                </div>
+            </div>
+
+            <!-- 聊天消息区域 -->
+            <div id="chat-messages" class="space-y-4">
+                <!-- 消息会动态添加到这里 -->
+            </div>
+        </div>
+
+        <!-- 输入区域 -->
+        <div class="border-t p-4">
+            <div class="flex items-center space-x-2">
+                <button onclick="startVoiceInput()" class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <div class="flex-1 bg-gray-100 rounded-2xl px-4 py-2">
+                    <input type="text" id="chat-input" placeholder="输入你的问题..." 
+                           class="w-full bg-transparent outline-none text-gray-700" 
+                           onkeypress="handleEnter(event)">
+                </div>
+                <button onclick="sendMessage()" class="w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 遮罩层 -->
+    <div id="assistant-overlay" class="fixed inset-0 bg-black/50 z-30 hidden" onclick="toggleAssistant()"></div>
+
+    <script>
+        let assistantOpen = false;
+        let currentQuestion = "小明的妈妈买了2千克苹果，每千克8元。又买了3千克橘子，每千克6元。一共花了多少钱？";
+        
+        function toggleAssistant() {
+            const panel = document.getElementById('assistant-panel');
+            const overlay = document.getElementById('assistant-overlay');
+            const helpIndicator = document.getElementById('help-indicator');
+            
+            assistantOpen = !assistantOpen;
+            
+            if (assistantOpen) {
+                panel.classList.add('active');
+                overlay.classList.remove('hidden');
+                helpIndicator.style.display = 'none';
+                // 自动发送问候消息
+                setTimeout(() => {
+                    addAssistantMessage("你好！我看到你在做这道数学题，有什么不懂的地方吗？我可以帮你分析题目、解释思路，但不会直接告诉你答案哦！ 😊");
+                }, 500);
+            } else {
+                panel.classList.remove('active');
+                overlay.classList.add('hidden');
+            }
+        }
+        
+        function askForHelp(type) {
+            addUserMessage(`请帮我${type}`);
+            
+            setTimeout(() => {
+                let response = "";
+                switch(type) {
+                    case "解题思路":
+                        response = "这是一道购买物品的计算题。解题思路是：\n\n1️⃣ 先计算苹果的总价\n2️⃣ 再计算橘子的总价\n3️⃣ 最后把两个总价相加\n\n你可以试着按这个步骤来做！";
+                        break;
+                    case "题目理解":
+                        response = "让我帮你理解这道题：\n\n📝 题目告诉我们：\n• 苹果：2千克，每千克8元\n• 橘子：3千克，每千克6元\n\n❓ 要求：一共花了多少钱？\n\n这是要我们计算总费用哦！";
+                        break;
+                    case "计算方法":
+                        response = "计算方法是这样的：\n\n🍎 苹果总价 = 重量 × 单价\n🍊 橘子总价 = 重量 × 单价\n💰 总费用 = 苹果总价 + 橘子总价\n\n你能试着计算一下吗？";
+                        break;
+                    case "知识点":
+                        response = "这道题涉及的知识点：\n\n📖 乘法运算（重量×单价）\n📖 加法运算（两个总价相加）\n📖 实际应用题解题方法\n\n这些都是六年级数学的重要内容！";
+                        break;
+                }
+                addAssistantMessage(response);
+            }, 1000);
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (message) {
+                addUserMessage(message);
+                input.value = '';
+                
+                // 模拟AI回复
+                setTimeout(() => {
+                    const response = generateAIResponse(message);
+                    addAssistantMessage(response);
+                }, 1500);
+            }
+        }
+        
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message show';
+            messageDiv.innerHTML = `
+                <div class="flex justify-end">
+                    <div class="bg-purple-500 text-white p-3 rounded-2xl rounded-tr-none max-w-xs">
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function addAssistantMessage(message) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message show';
+            messageDiv.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-2xl rounded-tl-none max-w-xs">
+                        <p class="text-sm whitespace-pre-line">${message}</p>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function generateAIResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('答案') || lowerMessage.includes('选什么')) {
+                return "我不能直接告诉你答案，但我可以帮你分析解题思路！你可以先试着理解题目，然后一步步计算。需要我帮你分析哪个部分呢？";
+            } else if (lowerMessage.includes('不会') || lowerMessage.includes('不懂')) {
+                return "没关系，我们一起来分析！这道题其实不难，关键是要理解题目要求什么。你能告诉我你觉得哪个部分比较困难吗？";
+            } else if (lowerMessage.includes('怎么算') || lowerMessage.includes('计算')) {
+                return "很好的问题！计算步骤是：\n1. 先算苹果花了多少钱\n2. 再算橘子花了多少钱\n3. 最后把两个金额加起来\n\n你可以试试第一步：2千克苹果，每千克8元，应该怎么算呢？";
+            } else {
+                return "我理解你的问题。让我们专注于这道题目，你可以点击上面的快速帮助按钮，或者告诉我你具体需要帮助的地方！";
+            }
+        }
+        
+        function startVoiceInput() {
+            addAssistantMessage("语音功能暂时不可用，请使用文字输入。你可以直接输入问题或点击上面的快速帮助按钮！");
+        }
+        
+        function selectOption(element, option) {
+            // 移除所有选项的选中状态
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('border-blue-500', 'bg-blue-50');
+                opt.classList.add('border-gray-200');
+                const circle = opt.querySelector('.w-8');
+                circle.classList.remove('bg-blue-500');
+                circle.classList.add('border-2', 'border-gray-300');
+                circle.innerHTML = `<span class="text-gray-600 font-medium">${opt.querySelector('span').textContent}</span>`;
+            });
+            
+            // 添加当前选项的选中状态
+            element.classList.remove('border-gray-200');
+            element.classList.add('border-blue-500', 'bg-blue-50');
+            const circle = element.querySelector('.w-8');
+            circle.classList.remove('border-2', 'border-gray-300');
+            circle.classList.add('bg-blue-500');
+            circle.innerHTML = '<i class="fas fa-check text-white text-sm"></i>';
+        }
+        
+        // 页面加载时显示帮助提示
+        setTimeout(() => {
+            document.getElementById('help-indicator').style.display = 'flex';
+        }, 3000);
+    </script>
+</body>
+</html>
